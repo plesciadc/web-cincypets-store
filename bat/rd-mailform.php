@@ -17,15 +17,16 @@ try {
     }
 
     function getRemoteIPAddress() {
-        if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             return $_SERVER['HTTP_CLIENT_IP'];
-        } else if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+
+        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             return $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
         return $_SERVER['REMOTE_ADDR'];
     }
 
-    if ( preg_match( '/^(127\.|192\.168\.|::1)/', getRemoteIPAddress() ) ) {
+    if (preg_match('/^(127\.|192\.168\.)/', getRemoteIPAddress())) {
         die('MF002');
     }
 
@@ -124,7 +125,7 @@ try {
 
     if (isset($_POST['name'])){
         $mail->FromName = $_POST['name'];
-    } else {
+    }else{
         $mail->FromName = "Site Visitor";
     }
 
